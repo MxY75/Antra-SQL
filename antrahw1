@@ -1,0 +1,77 @@
+-- 1.
+SELECT ProductID,[Name], Color, ListPrice 
+FROM Production.Product ;
+
+-- 2.
+SELECT ProductID,[Name], Color, ListPrice 
+From Production.Product
+WHERE ListPrice<>0.00 ;
+
+--3.
+SELECT ProductID,[Name], Color, ListPrice 
+From Production.Product
+WHERE Color IS NULL;
+
+--4.
+SELECT ProductID,[Name], Color, ListPrice 
+From Production.Product
+WHERE Color IS NOT NULL;
+
+--5.
+SELECT ProductID,[Name], Color, ListPrice 
+From Production.Product
+WHERE Color IS NOT NULL and ListPrice > 0;
+
+--6.
+SELECT Name +' '+Color [Name and Color]
+From Production.Product
+WHERE Color IS NOT NULL;
+
+--7.
+SELECT top 6 'NAME: ' + Name +' -- ' +'COLOR: '+ Color FROM Production.Product
+where Name like'%[ch]%' and Color in('BLACK','Silver');
+
+--8.
+SELECT ProductID, Name 
+FROM Production.Product
+WHERE ProductID BETWEEN 400 and 500;
+
+--9
+SELECT ProductID, Name ,Color
+FROM Production.Product
+WHERE Color in('Black','Blue');
+
+--10.
+SELECT ProductID, Name ,Color
+FROM Production.Product
+WHERE name LIKE 'S%';
+
+--11.
+SELECT top 6 Name , isNull(ListPrice,0.00) as ListPrice 
+FROM Production.Product
+WHERE name LIKE 'S[e]%' AND ListPrice = 0.00 or ListPrice = 53.99
+ORDER BY Name;
+
+--12.
+SELECT top 6 Name , isNull(ListPrice,0.00) as ListPrice 
+FROM Production.Product
+WHERE Name LIKE 'S[e]%' or Name like 'A%' 
+ORDER BY Name;
+
+--13.
+SELECT ProductID, Name ,Color
+FROM Production.Product
+WHERE name LIKE 'SPO[^k]%'
+ORDER BY Name;
+
+--14.
+SELECT DISTINCT Color
+FROM Production.Product
+WHERE Color IS NOT NULL
+ORDER by Color DESC;
+
+--15.
+SELECT DISTINCT ProductSubcategoryID ,Color
+FROM Production.Product
+WHERE Color IS NOT NULL AND ProductSubcategoryID IS NOT NULL
+ORDER by ProductSubcategoryID ,Color;
